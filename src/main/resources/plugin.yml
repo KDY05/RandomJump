@@ -1,0 +1,9 @@
+name: RandomJump
+version: '1.0-SNAPSHOT'
+main: com.github.kdy05.randomJump.RandomJump
+api-version: '1.20'
+authors: [KDY05]
+description: 도움도움!
+commands:
+  randjump:
+    description: toggle command
