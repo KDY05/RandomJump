@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class JumpStrManager {
-    public static final double BASE_VALUE = 0.41999998688697815;
+    private static final double BASE_VALUE = 0.41999998688697815;
 
     public static void randomize(Player player) {
         Objects.requireNonNull(player.getAttribute(AttributeUtil.getJumpStrength()))
@@ -28,11 +28,11 @@ public class JumpStrManager {
 
         // 60%로 확률로 강화 0단계
         if (rand > 40) {
-            value = 0.25 + (0.7 - 0.25) * random.nextDouble(); // 0.25 ~ 0.7
+            value = 0.2 + (0.6 - 0.2) * random.nextDouble(); // 0.2 ~ 0.6
         }
         // 25% 확률로 강화 1단계
         else if (rand > 15) {
-            value = 0.7 + (1.4 - 0.7) * random.nextDouble(); // 0.7 ~ 1.4
+            value = 0.6 + (1.4 - 0.6) * random.nextDouble(); // 0.6 ~ 1.4
         }
         // 10% 확률로 강화 2단계
         else if (rand > 5) {

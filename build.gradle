@@ -51,16 +51,16 @@ processResources {
 
 tasks.jar {
     archiveFileName = 'RandomJump.jar'
-    destinationDirectory = file("C:\\Users\\kwond\\Workspace\\minecraft\\Servers\\Paper214\\plugins")
+    destinationDirectory = file("D:\\Workspace\\minecraft\\Servers\\Paper214\\plugins")
     doLast {
         // 기본 위치 외에 추가로 복사할 경로들
         copy {
             from archiveFile
-            into file('C:\\Users\\kwond\\Workspace\\minecraft\\Servers\\Paper206\\plugins')
+            into file('D:\\Workspace\\minecraft\\Servers\\Paper206\\plugins')
         }
         copy {
             from archiveFile
-            into file('C:\\Users\\kwond\\Workspace\\minecraft\\Servers\\Paper210\\plugins')
+            into file('D:\\Workspace\\minecraft\\Servers\\Paper210\\plugins')
         }
     }
 }

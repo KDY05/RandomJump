@@ -8,8 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class AfterPlayerJump implements Listener {
-    public static final RandomJump PLUGIN = RandomJump.getPlugin();
-    public static final FileConfiguration CONFIG = PLUGIN.getConfig();
+    private static final RandomJump PLUGIN = RandomJump.getPlugin();
+    private static final FileConfiguration CONFIG = PLUGIN.getConfig();
 
     @EventHandler
     public void afterPlayerJump(PlayerJumpEvent e) {

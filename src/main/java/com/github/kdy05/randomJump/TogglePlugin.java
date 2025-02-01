@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TogglePlugin implements CommandExecutor, TabCompleter {
-    private final RandomJump plugin = RandomJump.getPlugin();
+    private final RandomJump PLUGIN = RandomJump.getPlugin();
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command,
@@ -25,14 +25,14 @@ public class TogglePlugin implements CommandExecutor, TabCompleter {
 
         switch (strings[0]) {
             case "on" -> {
-                plugin.getConfig().set("Random-jump", true);
-                plugin.saveConfig();
+                PLUGIN.getConfig().set("Random-jump", true);
+                PLUGIN.saveConfig();
                 commandSender.sendMessage(Component.text("랜덤 점프를 활성화합니다.", NamedTextColor.DARK_GREEN));
                 return false;
             }
             case "off" -> {
-                plugin.getConfig().set("Random-jump", false);
-                plugin.saveConfig();
+                PLUGIN.getConfig().set("Random-jump", false);
+                PLUGIN.saveConfig();
                 JumpStrManager.reset();
                 commandSender.sendMessage(Component.text("랜덤 점프를 비활성화합니다.", NamedTextColor.RED));
                 return false;
