@@ -1,1 +1,6 @@
 rootProject.name = 'RandomJump'
+
+include 'api'
+include 'v1_20_6'
+include 'v1_21_2'
+include 'plugin'

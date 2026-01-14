@@ -1,0 +1,34 @@
+plugins {
+    id("com.gradleup.shadow") version "9.3.1"
+}
+
+dependencies {
+    implementation project(':api')
+    implementation project(':v1_20_6')
+    implementation project(':v1_21_2')
+    compileOnly 'io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT'
+}
+
+shadowJar {
+    archiveFileName = 'RandomJump.jar'
+
+    // Include all dependencies
+    configurations = [project.configurations.runtimeClasspath]
+
+    // Build to standard build/libs directory
+    destinationDirectory = layout.buildDirectory.dir("libs")
+
+}
+
+processResources {
+    def props = [version: project.version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}
+
+build {
+    dependsOn shadowJar
+}
