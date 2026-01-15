@@ -1,18 +1,10 @@
-* [x] **해당 플러그인 사용 시, 아래와 같이 출처를 표기해주세요.**
-
-> [플러그인 출처] 제작: 어라랍(https://github.com/KDY05)
-
-<br/>
-
 # Random Jump
 
-* 지원 버전: 1.20.6 이상
-* 테스트된 버전: 1.20.6, 1.21, 1.21.4
-* **Paper 전용 플러그인이므로, 반드시 Paper 서버를 이용해야 합니다.**
+* Requirements: Paper 1.20.6+ (Spigot is not supported)
+* Usage: /randjump \[on|off|reload\]
 
-매 점프마다 점프 세기가 랜덤으로 정해지는 랜덤 점프 플러그인입니다.
-한 칸보다 낮게 뛰어질 수 있고, 혹은 낙사할 만큼 아주 높게 뛰어질 수도 있습니다.
+The strength of every single jump is randomly determined.
 
-\'/randjump on|off\' 명령어로 켜고 끌 수 있습니다. 기본값은 **비활성화**입니다.
+Specific figures can be customized in config.yml.
 
-이 플러그인은 [기존 스크립트](https://github.com/KDY05/Denizen_Projects)를 플러그인으로 다시 만든 것입니다. 스크립트가 필요하다면 참고해주세요.
+[DSC version is here.](https://github.com/KDY05/Denizen_Projects)

@@ -33,11 +33,8 @@ public final class RandomJump extends JavaPlugin {
         }
 
         // Initialize managers
-        jumpStrManager = new JumpStrManager(adapter);
         configManager = new ConfigManager(this);
-
-        // Initialize configuration
-        configManager.initConfig();
+        jumpStrManager = new JumpStrManager(adapter, configManager);
 
         // Register listeners and commands
         getServer().getPluginManager().registerEvents(
@@ -67,7 +64,7 @@ public final class RandomJump extends JavaPlugin {
         if (ServerVersionDetector.isBetween("1.20.6", "1.21.1")) {
             adapter = loadAdapter("com.github.kdy05.randomjump.v1_20_6.AttributeAdapter_1_20_6");
         } else if (ServerVersionDetector.isAtLeast("1.21.2")) {
-            adapter = loadAdapter("com.github.kdy05.randomjump.v1_21.AttributeAdapter_1_21_2");
+            adapter = loadAdapter("com.github.kdy05.randomjump.v1_21_2.AttributeAdapter_1_21_2");
         }
 
         return adapter != null;

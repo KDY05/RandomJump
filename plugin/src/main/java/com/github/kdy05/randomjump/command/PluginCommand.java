@@ -22,6 +22,7 @@ import java.util.Objects;
 public class PluginCommand implements CommandExecutor, TabCompleter {
     private final JumpStrManager jumpStrManager;
     private final ConfigManager configManager;
+    public static final String HINT = "/randjump on|off|reload";
 
     /**
      * Creates a new TogglePlugin command executor.
@@ -38,7 +39,7 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command,
                              @NotNull String s, @NotNull String @NotNull [] strings) {
         if (strings.length != 1) {
-            commandSender.sendMessage(Component.text("/randjump on|off", NamedTextColor.YELLOW));
+            commandSender.sendMessage(Component.text(HINT, NamedTextColor.YELLOW));
             return false;
         }
 
@@ -54,8 +55,13 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
                 commandSender.sendMessage(Component.text("랜덤 점프를 비활성화합니다.", NamedTextColor.RED));
                 return true;
             }
+            case "reload" -> {
+                configManager.reloadConfig();
+                commandSender.sendMessage(Component.text("config.yml을 새로고침합니다.", NamedTextColor.GREEN));
+                return true;
+            }
             default -> {
-                commandSender.sendMessage(Component.text("/randjump on|off", NamedTextColor.YELLOW));
+                commandSender.sendMessage(Component.text(HINT, NamedTextColor.YELLOW));
                 return false;
             }
         }
@@ -68,6 +74,7 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
         if (strings.length == 1) {
             completions.add("on");
             completions.add("off");
+            completions.add("reload");
         }
         return completions;
     }

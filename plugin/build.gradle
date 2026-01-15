@@ -10,7 +10,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'RandomJump.jar'
+    archiveFileName = "RandomJump-${version}.jar"
 
     // Include all dependencies
     configurations = [project.configurations.runtimeClasspath]

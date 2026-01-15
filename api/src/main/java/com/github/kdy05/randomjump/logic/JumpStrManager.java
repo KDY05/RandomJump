@@ -4,6 +4,7 @@ import com.github.kdy05.randomjump.api.AttributeAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -13,16 +14,21 @@ import java.util.Random;
  */
 public class JumpStrManager {
     private static final double BASE_VALUE = 0.41999998688697815;
+    private static final Random RANDOM = new Random();
+
     private final AttributeAdapter adapter;
+    private final ConfigManager configManager;
 
     /**
-     * Creates a new JumpStrManager with the specified adapter.
+     * Creates a new JumpStrManager with the specified adapter and config manager.
      *
      * @param adapter The version-specific attribute adapter
-     * @throws NullPointerException if adapter is null
+     * @param configManager The configuration manager
+     * @throws NullPointerException if any parameter is null
      */
-    public JumpStrManager(AttributeAdapter adapter) {
+    public JumpStrManager(AttributeAdapter adapter, ConfigManager configManager) {
         this.adapter = Objects.requireNonNull(adapter, "AttributeAdapter cannot be null");
+        this.configManager = Objects.requireNonNull(configManager, "ConfigManager cannot be null");
     }
 
     /**
@@ -45,28 +51,24 @@ public class JumpStrManager {
         }
     }
 
-    private static double getRandomValue() {
-        Random random = new Random();
-        int rand = random.nextInt(100) + 1; // 1~100 사이의 난수 생성
-        double value;
+    /**
+     * Gets a random jump value based on configured tiers.
+     *
+     * @return Random jump strength value
+     */
+    private double getRandomValue() {
+        List<ConfigManager.JumpTier> tiers = configManager.getJumpTiers();
+        int rand = RANDOM.nextInt(100) + 1; // 1~100
 
-        // 60%로 확률로 강화 0단계
-        if (rand > 40) {
-            value = 0.2 + (0.6 - 0.2) * random.nextDouble(); // 0.2 ~ 0.6
-        }
-        // 25% 확률로 강화 1단계
-        else if (rand > 15) {
-            value = 0.6 + (1.4 - 0.6) * random.nextDouble(); // 0.6 ~ 1.4
-        }
-        // 10% 확률로 강화 2단계
-        else if (rand > 5) {
-            value = 1.4 + (2.6 - 1.4) * random.nextDouble(); // 1.4 ~ 2.6
-        }
-        // 5% 확률로 강화 3단계
-        else {
-            value = 8.0;
+        int cumulative = 0;
+        for (ConfigManager.JumpTier tier : tiers) {
+            cumulative += tier.chance();
+            if (rand <= cumulative) {
+                return tier.min() + (tier.max() - tier.min()) * RANDOM.nextDouble();
+            }
         }
 
-        return value;
+        // 기본값 (티어 설정이 100%를 채우지 않을 경우)
+        return BASE_VALUE;
     }
 }

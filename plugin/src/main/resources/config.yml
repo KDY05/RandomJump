@@ -1,1 +1,30 @@
+# RandomJump Configuration
+
+# 랜덤 점프 활성화 여부
 enabled: false
+
+# 점프 강도 티어 설정
+tiers:
+  # 60% 확률 - 약간 낮은 점프 (0.2 ~ 0.6)
+  0:
+    chance: 60
+    min: 0.2
+    max: 0.6
+
+  # 25% 확률 - 보통 ~ 높은 점프 (0.6 ~ 1.4)
+  1:
+    chance: 25
+    min: 0.6
+    max: 1.4
+
+  # 10% 확률 - 높은 점프 (1.4 ~ 2.6)
+  2:
+    chance: 10
+    min: 1.4
+    max: 2.6
+
+  # 5% 확률 - 매우 높은 점프 (고정값)
+  3:
+    chance: 5
+    min: 8.0
+    max: 8.0
