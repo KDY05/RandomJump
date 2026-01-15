@@ -18,6 +18,12 @@ shadowJar {
     // Build to standard build/libs directory
     destinationDirectory = layout.buildDirectory.dir("libs")
 
+    from(rootProject.file('README.md')) {
+        into 'META-INF'
+    }
+    from(rootProject.file('LICENSE')) {
+        into 'META-INF'
+    }
 }
 
 processResources {
